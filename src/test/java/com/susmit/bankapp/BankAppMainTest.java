@@ -1,10 +1,10 @@
-package com.susmit.springsecuritybasic;
+package com.susmit.bankapp;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class SpringSecurityBasicApplicationTests {
+class BankAppMainTest {
 
 	@Test
 	void contextLoads() {

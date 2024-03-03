@@ -1,13 +1,13 @@
-package com.susmit.springsecuritybasic;
+package com.susmit.bankapp;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class SpringSecurityBasicApplication {
+public class BankAppMain {
 
 	public static void main(String[] args) {
-		SpringApplication.run(SpringSecurityBasicApplication.class, args);
+		SpringApplication.run(BankAppMain.class, args);
 	}
 
 }

@@ -4,6 +4,7 @@ import com.susmit.bankapp.dtos.RegisterUserRequestDTO;
 import com.susmit.bankapp.entity.UserLogin;
 import com.susmit.bankapp.repository.UserLoginRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -12,10 +13,12 @@ import java.util.List;
 public class LoginServiceImpl implements LoginService{
 
     private UserLoginRepository userLoginRepository;
+    private PasswordEncoder passwordEncoder;
 
     @Autowired
-    LoginServiceImpl(UserLoginRepository userLoginRepository){
+    LoginServiceImpl(UserLoginRepository userLoginRepository, PasswordEncoder passwordEncoder){
         this.userLoginRepository=userLoginRepository;
+        this.passwordEncoder=passwordEncoder;
     }
 
     @Override
@@ -24,9 +27,10 @@ public class LoginServiceImpl implements LoginService{
         if(!userLogins.isEmpty()){
             throw new RuntimeException("User already exists : "+userLogins.get(0).getUsername());
         }
+        String password=passwordEncoder.encode(registerUserRequestDTO.getPassword());
         UserLogin userLogin=UserLogin.builder()
                 .username(registerUserRequestDTO.getUsername())
-                .password(registerUserRequestDTO.getPassword())
+                .password(password)
                 .permissions("read")
                 .build();
         userLoginRepository.save(userLogin);
